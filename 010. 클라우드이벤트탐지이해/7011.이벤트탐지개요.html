@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클라우드 보안 실무: 이벤트 탐지 개요</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+        
+        :root {
+            --primary: #1a365d;
+            --secondary: #2b6cb0;
+            --accent: #ed8936;
+            --bg-light: #f8fafc;
+            --success: #38a169;
+            --danger: #e53e3e;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-light);
+            color: #2d3748;
+            line-height: 1.8;
+            word-break: keep-all;
+        }
+
+        .container-custom {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .chapter-header {
+            border-bottom: 4px solid var(--primary);
+            padding-bottom: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            padding: 3.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-number {
+            background: var(--primary);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.25rem;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .expert-insight {
+            background-color: #fffaf0;
+            border-left: 5px solid var(--accent);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border-radius: 0 1rem 1rem 0;
+        }
+
+        .term-definition {
+            background-color: #f0f4f8;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .term-title {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .mermaid {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+            border: 1px solid #edf2f7;
+            display: flex;
+            justify-content: center;
+        }
+
+        .grid-feature {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            padding: 2.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: var(--secondary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2.5rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            border-left: 1px solid #e2e8f0;
+            vertical-align: middle;
+        }
+
+        td:first-child { border-left: none; }
+
+        .highlight-text {
+            color: var(--secondary);
+            font-weight: 700;
+            border-bottom: 2px solid #bee3f8;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 0;
+            border-top: 1px solid #e2e8f0;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container-custom { padding: 2rem 1rem; }
+            .content-card { padding: 2rem; }
+            .section-title { font-size: 1.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-custom">
+        <!-- Chapter Header -->
+        <header class="chapter-header">
+            <div class="flex items-center space-x-3 mb-4">
+                <span class="px-3 py-1 bg-blue-900 text-white text-xs font-bold rounded-full uppercase tracking-tighter">Certified Professional</span>
+                <span class="text-slate-400">|</span>
+                <span class="text-slate-500 text-sm font-medium">Cloud Security Masterclass 2026</span>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-black text-slate-900 leading-tight mb-6">
+                1. 클라우드 이벤트 탐지 개요
+            </h1>
+            <p class="text-2xl text-slate-500 font-light max-w-3xl">
+                하이브리드 및 멀티 클라우드 환경에서 가시성을 확보하고, 지능화된 위협을 식별하기 위한 기초 아키텍처 전략 가이드.
+            </p>
+        </header>
+
+        <!-- Section 1.1 -->
+        <section class="content-card">
+            <h2 class="section-title">
+                <div class="section-number">1.1</div>
+                클라우드 보안 책임 공유 모델 (Shared Responsibility Model)
+            </h2>
+            
+            <div class="space-y-6 text-lg text-slate-700">
+                <p>
+                    클라우드 환경에서의 보안은 더 이상 단일 주체의 책임이 아닙니다. <span class="highlight-text">CSP (Cloud Service Provider, 클라우드 서비스 제공자)</span>와 고객 간의 명확한 역할 분담을 정의한 것이 바로 <strong>책임 공유 모델 (SRM, Shared Responsibility Model)</strong>입니다. 
+                </p>
+                <p>
+                    2026년 현재는 단순한 '분담'을 넘어, 사고 발생 시 복구 탄력성을 함께 책임지는 <span class="font-bold text-slate-900">공동 회복탄력성 (Shared Resilience)</span> 모델이 표준으로 자리 잡았습니다.
+                </p>
+            </div>
+
+            <div class="grid-feature">
+                <div class="feature-item bg-blue-50 border-blue-100 group">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fas fa-server text-xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-blue-900 ml-4">CSP의 책임 (Security OF the Cloud)</h4>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">
+                        전 세계에 분산된 데이터 센터의 물리적 보안, 컴퓨팅 하드웨어, 스토리지 인프라, <span class="font-bold">Hypervisor (하이퍼바이저, 가상화 계층)</span> 및 글로벌 네트워크 백본을 책임집니다.
+                    </p>
+                </div>
+                <div class="feature-item bg-orange-50 border-orange-100 group">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-orange-600 text-white rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fas fa-fingerprint text-xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-orange-900 ml-4">고객의 책임 (Security IN the Cloud)</h4>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed font-medium">
+                        저장 데이터 암호화, 네트워크 구성(VPC/Subnet), <span class="text-orange-700 font-bold">IAM (Identity and Access Management, ID 및 액세스 관리)</span>, 그리고 가장 중요한 <span class="text-orange-700">이벤트 모니터링 및 로깅</span>이 고객의 핵심 영역입니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="expert-insight">
+                <h4 class="font-bold text-orange-800 mb-2 flex items-center">
+                    <i class="fas fa-brain mr-3"></i> 2026 Architect Insight: AI & Serverless Responsibility
+                </h4>
+                <p class="text-slate-700">
+                    최근 <strong>생성형 AI (Generative AI, 생성형 인공지능)</strong> 서비스 이용 시, AI 모델에 입력되는 프롬프트 데이터의 보안 및 결과물에 대한 필터링 책임은 고객에게 있습니다. 또한 서버리스 환경에서는 인프라 관리가 추상화되지만, <strong>권한 최소화 원칙 (Principle of Least Privilege)</strong>에 따른 IAM 설계와 런타임 로그 분석 책임은 여전히 고객에게 요구됩니다.
+                </p>
+            </div>
+
+            <div class="term-definition">
+                <span class="term-title">CSP (Cloud Service Provider, 클라우드 서비스 제공자)</span>
+                AWS, Azure, Google Cloud와 같이 가상화된 컴퓨팅 리소스를 서비스 형태로 제공하는 기업입니다.
+                <span class="term-title mt-4">IAM (Identity and Access Management, ID 및 액세스 관리)</span>
+                누가(Who) 어떤 리소스에 대해 어떤 권한을 가지는지 중앙에서 제어하는 보안 프레임워크입니다.
+            </div>
+        </section>
+
+        <!-- Section 1.2 -->
+        <section class="content-card">
+            <h2 class="section-title">
+                <div class="section-number">1.2</div>
+                이벤트 탐지의 정의 및 필요성
+            </h2>
+
+            <p class="text-lg text-slate-700 mb-10">
+                클라우드 이벤트 탐지는 인프라 내에서 발생하는 모든 활동(<span class="font-bold">API 호출, 네트워크 트래픽 흐름, 리소스 변경</span>)을 실시간으로 수집하고, <span class="highlight-text">비정상적인 행위 (Anomalies)</span>를 식별하여 자동 대응하는 보안 프로세스입니다.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="p-8 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-eye text-2xl"></i>
+                    </div>
+                    <h5 class="font-bold text-xl mb-3">가시성 (Visibility)</h5>
+                    <p class="text-slate-500 text-sm">모든 API 호출에 대한 완벽한 <span class="font-bold">Audit Trail (감사 추적)</span>을 통해 관리 사각지대를 제거합니다.</p>
+                </div>
+                <div class="p-8 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-gavel text-2xl"></i>
+                    </div>
+                    <h5 class="font-bold text-xl mb-3">규정 준수 (Compliance)</h5>
+                    <p class="text-slate-500 text-sm">ISMS-P, SOC2, GDPR 등 글로벌 표준을 충족하기 위한 법적 증거 자료를 실시간 확보합니다.</p>
+                </div>
+                <div class="p-8 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-microscope text-2xl"></i>
+                    </div>
+                    <h5 class="font-bold text-xl mb-3">사후 포렌식 (Forensics)</h5>
+                    <p class="text-slate-500 text-sm">사고 발생 시 공격 유입 경로와 <span class="font-bold">Blast Radius (폭발 반경)</span>를 정확히 파악합니다.</p>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 rounded-3xl p-12 text-white overflow-hidden relative">
+                <div class="absolute top-0 right-0 p-8 opacity-10">
+                    <i class="fas fa-shield-alt text-9xl"></i>
+                </div>
+                <h3 class="text-3xl font-black mb-10 text-center text-blue-400">지능형 클라우드 위협 탐지 파이프라인</h3>
+                <div class="mermaid">
+                    graph LR
+                        A(이벤트 소스<br/>API/Net/System) --> B{AI 위협 분석<br/>Engine}
+                        B --> C(보안 관제 센터<br/>SOC/SIEM)
+                        B --> D(장기 보관<br/>Data Lake)
+                        C --> E(실시간 대응<br/>SOAR/Lambda)
+                        
+                        style A fill:#f1f5f9,stroke:#475569,color:#0f172a
+                        style B fill:#2563eb,stroke:#1d4ed8,color:#fff
+                        style C fill:#f97316,stroke:#ea580c,color:#fff
+                        style E fill:#ef4444,stroke:#dc2626,color:#fff
+                        linkStyle default stroke:#64748b,stroke-width:2px;
+                </div>
+            </div>
+
+            <div class="term-definition">
+                <span class="term-title">Audit Trail (감사 추적)</span>
+                시스템 내 활동 기록을 시간 순으로 기록하여 누가 어떤 작업을 했는지 입증하는 데이터입니다.
+                <span class="term-title mt-4">Blast Radius (폭발 반경)</span>
+                보안 사고 발생 시 피해가 확산될 수 있는 물리적/논리적 범위를 의미합니다.
+            </div>
+        </section>
+
+        <!-- Section 1.3 -->
+        <section class="content-card">
+            <h2 class="section-title">
+                <div class="section-number">1.3</div>
+                전통적인 온프레미스 환경과의 차이점
+            </h2>
+
+            <div class="overflow-x-auto rounded-xl">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="w-1/4">비교 항목</th>
+                            <th class="w-3/8">온프레미스 (On-Premise)</th>
+                            <th class="w-3/8">클라우드 네이티브 (Cloud Native)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="bg-slate-50 font-bold text-slate-900">인프라 정의</td>
+                            <td>물리적 서버 및 고정 네트워크 장비</td>
+                            <td><span class="text-blue-600 font-bold">IaC (Infrastructure as Code, 코드형 인프라)</span> 중심</td>
+                        </tr>
+                        <tr>
+                            <td class="bg-slate-50 font-bold text-slate-900">로그 수집</td>
+                            <td>에이전트 설치 및 물리 탭(Tap) 연결</td>
+                            <td><span class="text-blue-600 font-bold">API 기반 감사 서비스</span> 자동 연동</td>
+                        </tr>
+                        <tr>
+                            <td class="bg-slate-50 font-bold text-slate-900">보안 경계</td>
+                            <td>성곽 중심의 네트워크 경계 보안</td>
+                            <td><span class="text-blue-600 font-bold">Zero Trust (제로 트러스트)</span> 신원 중심 보안</td>
+                        </tr>
+                        <tr>
+                            <td class="bg-slate-50 font-bold text-slate-900">대응 방식</td>
+                            <td>수동 분석 및 하드웨어 교체 중심</td>
+                            <td><span class="text-blue-600 font-bold">SOAR</span>를 통한 실시간 자동 격리</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="expert-insight">
+                <h4 class="font-bold text-blue-800 mb-2 flex items-center">
+                    <i class="fas fa-tools mr-3"></i> Architect's Tip: API-Centric Security
+                </h4>
+                <p class="text-slate-700">
+                    클라우드 보안의 핵심은 모든 통제가 <strong>API (Application Programming Interface)</strong>로 이루어진다는 점입니다. 공격자 또한 API를 주요 공격 벡터로 사용하므로, 네트워크 패킷 분석 못지않게 <span class="font-bold underline decoration-blue-300">클라우드 서비스 로그(예: AWS CloudTrail)의 변조 감시와 비정상 호출 패턴</span> 탐지가 최우선 과제입니다.
+                </p>
+            </div>
+
+            <div class="term-definition">
+                <span class="term-title">Zero Trust (제로 트러스트, 무신뢰 원칙)</span>
+                "아무도 믿지 말고 항상 검증하라"는 원칙 하에 위치와 상관없이 모든 접근을 인증하는 보안 모델입니다.
+                <span class="term-title mt-4">SOAR (Security Orchestration, Automation and Response)</span>
+                다양한 보안 도구를 통합하여 위협에 자동 대응하는 기술입니다.
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="flex flex-col md:flex-row justify-between items-start">
+                <div class="mb-8 md:mb-0 text-left">
+                    <p class="font-bold text-slate-800">IT 보안전문가과정: 클라우드 보안 아키텍처 실무</p>
+                    <p class="mt-2 text-sm">작성: 2026 최첨단 보안 아키텍트 그룹</p>
+                    <p class="text-xs mt-4">본 교재는 실습 교육용으로만 제공되며 무단 배포를 금합니다.</p>
+                </div>
+                <div class="flex space-x-4 text-2xl opacity-50">
+                    <i class="fab fa-aws"></i>
+                    <i class="fab fa-microsoft"></i>
+                    <i class="fab fa-google"></i>
+                    <i class="fab fa-docker"></i>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Mermaid.js 초기화 - 지저분한 꺾임 없는 완벽한 직선(linear) 설정
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'neutral',
+            securityLevel: 'loose',
+            flowchart: { 
+                useMaxWidth: true, 
+                htmlLabels: true, 
+                curve: 'linear', // 직선 형태로 설정
+                rankSpacing: 100,
+                nodeSpacing: 50
+            }
+        });
+    </script>
+</body>
+</html>
