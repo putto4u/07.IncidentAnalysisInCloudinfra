@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70750.6_PDF_분석_전용_도구_활용_실습",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:24.573507+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Inspect embedded script objects",
+    "Check external object references",
+    "Review viewer trigger patterns"
+  ]
+}

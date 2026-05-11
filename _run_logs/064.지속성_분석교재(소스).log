@@ -1,0 +1,8 @@
+﻿{
+  "os": "windows",
+  "possible_locations": [
+    "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+    "작업 스케줄러"
+  ],
+  "action": "read-only guidance"
+}

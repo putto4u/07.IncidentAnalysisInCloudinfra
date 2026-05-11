@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70740.6_지속성_유지_및_내부_전파_시나리오",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:23.806808+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

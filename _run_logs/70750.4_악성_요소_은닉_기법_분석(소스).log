@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70750.4_악성_요소_은닉_기법_분석",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:24.390392+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

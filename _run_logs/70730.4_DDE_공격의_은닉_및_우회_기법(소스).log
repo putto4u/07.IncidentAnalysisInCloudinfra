@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70730.4_DDE_공격의_은닉_및_우회_기법",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:22.847007+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Inspect embedded script objects",
+    "Check external object references",
+    "Review viewer trigger patterns"
+  ]
+}

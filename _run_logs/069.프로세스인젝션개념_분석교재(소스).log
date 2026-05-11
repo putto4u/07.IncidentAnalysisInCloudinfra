@@ -1,0 +1,25 @@
+﻿{
+  "technique": "process_injection",
+  "steps": [
+    {
+      "step": 1,
+      "name": "target_process_select",
+      "risk": "high"
+    },
+    {
+      "step": 2,
+      "name": "memory_write_attempt",
+      "risk": "high"
+    },
+    {
+      "step": 3,
+      "name": "remote_thread_create",
+      "risk": "high"
+    },
+    {
+      "step": 4,
+      "name": "execution",
+      "risk": "critical"
+    }
+  ]
+}

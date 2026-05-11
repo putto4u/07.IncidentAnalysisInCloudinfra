@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70640.1_DDoS_공격의_진화와_봇넷_구조",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:16.807242+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Detect traffic surge",
+    "Check distributed C2 pattern",
+    "Inspect reflection-amplification traces"
+  ]
+}

@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70630.1_백도어_및_RAT_진화",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:15.981167+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

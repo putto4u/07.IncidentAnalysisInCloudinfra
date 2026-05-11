@@ -1,0 +1,10 @@
+﻿{
+  "topic": "downloader",
+  "allowed_url": true,
+  "flow": {
+    "step1": "parse URL and validate allowlist",
+    "step2": "download bytes from trusted source (placeholder only)",
+    "step3": "verify hash before any execution",
+    "offensive_code": "omitted"
+  }
+}

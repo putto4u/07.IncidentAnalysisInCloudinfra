@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정보 탈취형 악성코드 및 공급망 공격 사례연구</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --brand-primary: #0ea5e9;
+            --brand-secondary: #6366f1;
+            --bg-dark: #020617;
+            --card-bg: rgba(15, 23, 42, 0.6);
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f1f5f9;
+            scroll-behavior: smooth;
+            line-height: 1.8;
+        }
+
+        .glass-panel {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-8px);
+            border-color: rgba(14, 165, 233, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        section {
+            padding: 100px 0;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.05);
+            z-index: 1000;
+        }
+        #progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #0ea5e9, #6366f1);
+            width: 0%;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-circle {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 50%;
+            background: #1e293b;
+            border: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--brand-primary);
+            position: relative;
+            z-index: 2;
+        }
+        .step-line {
+            position: absolute;
+            left: 22px;
+            top: 44px;
+            bottom: -20px;
+            width: 1px;
+            background: #334155;
+            z-index: 1;
+        }
+
+        .mermaid-container {
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: 2rem;
+            margin: 2.5rem 0;
+            width: 100%;
+            overflow-x: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminology-note {
+            margin-top: 1rem;
+            padding: 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border-left: 5px solid var(--brand-primary);
+            border-radius: 0 16px 16px 0;
+            font-size: 0.95rem;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        
+        .expert-tip {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 1.75rem;
+            border-radius: 1.25rem;
+            margin: 2rem 0;
+        }
+
+        strong { color: var(--brand-primary); }
+        .highlight-red { color: #f87171; font-weight: 600; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass-panel rounded-none border-t-0 border-x-0">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-shield-halved text-white text-sm"></i>
+            </div>
+            <span class="font-bold text-sm tracking-tight hidden md:block uppercase">Malware Incident Report 2026</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-xs font-semibold tracking-widest text-slate-400">
+            <a href="#hero" class="hover:text-sky-400 transition-colors uppercase">Intro</a>
+            <a href="#infostealer" class="hover:text-sky-400 transition-colors uppercase">Infostealer</a>
+            <a href="#xyz-case" class="hover:text-sky-400 transition-colors uppercase">XYZ Case</a>
+            <a href="#supply-chain" class="hover:text-sky-400 transition-colors uppercase">Supply Chain</a>
+            <a href="#summary" class="hover:text-sky-400 transition-colors uppercase">Summary</a>
+        </div>
+        <button class="bg-sky-500 hover:bg-sky-400 text-white px-4 py-1.5 rounded-full text-xs font-bold transition-all transform hover:scale-105">
+            RESOURCES
+        </button>
+    </nav>
+
+    <main class="container mx-auto px-6 max-w-5xl">
+        
+        <!-- HERO SECTION -->
+        <section id="hero" class="text-center">
+            <div class="reveal">
+                <p class="text-sky-400 font-bold tracking-[0.5em] mb-6 text-sm uppercase">Malware Case Study Series</p>
+                <h1 class="mb-10 leading-tight tracking-tighter">
+                    <span class="block text-slate-400 font-medium text-4xl md:text-5xl mb-4">사례 연구 I</span>
+                    <span class="text-gradient text-6xl md:text-7xl font-black block">정보 탈취형 악성코드 사고</span>
+                </h1>
+                <p class="text-slate-400 text-lg md:text-xl max-w-3xl mx-auto font-light leading-relaxed">
+                    기업의 민감 데이터와 자격 증명을 노리는 <strong>Infostealer(정보 탈취형 악성코드)</strong>의 실체와, 
+                    신뢰 관계의 허점을 파고드는 <strong>Supply Chain Attack(공급망 공격)</strong>의 고도화된 매커니즘을 심층 분석합니다.
+                </p>
+                <div class="mt-12 flex justify-center gap-4">
+                    <a href="#overview" class="p-4 rounded-full bg-slate-800 text-white hover:bg-slate-700 transition-all hover:scale-110">
+                        <i class="fa-solid fa-chevron-down animate-bounce"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- OVERVIEW -->
+        <section id="overview">
+            <div class="glass-panel p-8 md:p-16 reveal group">
+                <div class="flex items-center gap-4 mb-8">
+                    <span class="w-12 h-1px bg-sky-500 transition-all duration-500 group-hover:w-24"></span>
+                    <h2 class="text-2xl font-bold uppercase tracking-widest group-hover:text-sky-400 transition-colors">Overview</h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="text-slate-300 text-lg mb-6 leading-relaxed">
+                            <strong>정보 탈취형 악성코드</strong>는 기업의 민감한 데이터, 개인 정보, 금융 정보, 자격 증명 등을 몰래 빼돌리는 것을 목적으로 설계되었습니다.
+                        </p>
+                        <p class="text-slate-400 mb-8 leading-relaxed">
+                            본 챕터에서는 <strong>Infostealer(인포스틸러)</strong>를 이용한 자격 증명 탈취 및 기업 기밀 유출 사례와 <strong>Supply Chain Attack(공급망 공격)</strong>을 통한 유포 사례를 통해 현대 보안 위협의 본질을 파헤칩니다.
+                        </p>
+                    </div>
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-700"></div>
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800" 
+                             alt="Digital Security Data Loss" class="relative rounded-2xl transition-all duration-700 group-hover:scale-[1.02] filter grayscale hover:grayscale-0">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. INFOSTEALER SECTION -->
+        <section id="infostealer">
+            <div class="reveal">
+                <h2 class="text-4xl font-bold mb-12">1. Infostealer를 이용한 <span class="text-sky-500">자격 증명 탈취 및 기밀 유출 사례</span></h2>
+                
+                <div class="glass-panel p-8 md:p-12 mb-12">
+                    <p class="text-slate-300 text-lg leading-relaxed">
+                        <strong>Infostealer(인포스틸러, 정보 탈취형 악성코드)</strong>는 사용자 모르게 시스템에 침투하여 저장된 비밀번호, 브라우저 기록, 쿠키, 파일 등을 수집하여 공격자에게 전송하는 악성코드입니다. 이는 단순히 단말기의 감염을 넘어 기업 전체의 <strong>Credential Theft(자격 증명 탈취)</strong> 및 기밀 유출로 직결될 수 있습니다.
+                    </p>
+                </div>
+
+                <!-- INFOSTEALER MECHANISM DIAGRAM (ENHANCED) -->
+                <h3 class="text-2xl font-bold mb-8 italic"><i class="fa-solid fa-microchip mr-3 text-sky-400"></i> 1.1 인포스틸러 동작 매커니즘 도식 (Technical Flow)</h3>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+                        graph LR
+                            subgraph "감염 및 실행 (Delivery & Execution)"
+                                A[침투: 스피어 피싱 / 악성 매크로] --> B[은닉 실행: 로더 악성코드]
+                                B -- "지속성 확보" --> C[OS API 후킹 및 권한 상승]
+                            end
+                            subgraph "데이터 식별 및 수집 (Data Harvesting)"
+                                C --> D[브라우저 로컬 DB 탐색: SQLite]
+                                C --> E[시스템 메모리 덤프: 세션 쿠키 탈취]
+                                C --> F[특정 확장자 파일 스캐닝: .key, .pdf, .docx]
+                            </div>
+                            subgraph "유출 및 은닉 (Exfiltration)"
+                                D --> G[데이터 압축 및 암호화]
+                                E --> G
+                                F --> G
+                                G -- "HTTPS / Telegram API / C2 Protocol" --> H[공격자 명령 제어 서버]
+                            end
+                            style A fill:#f87171,stroke:#b91c1c,color:#fff
+                            style H fill:#ef4444,stroke:#7f1d1d,color:#fff
+                            style G fill:#fbbf24,stroke:#d97706,color:#fff
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mt-12">
+                    <div class="p-8 glass-panel group">
+                        <h4 class="text-sky-400 font-bold mb-8 flex items-center gap-3 uppercase tracking-tighter">
+                            <i class="fa-solid fa-list-check"></i> 주요 특징 및 기능
+                        </h4>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-500 shrink-0"><i class="fa-solid fa-id-card"></i></div>
+                                <div>
+                                    <h5 class="text-white font-bold mb-1">자격 증명 수집</h5>
+                                    <p class="text-xs text-slate-400">웹 브라우저 비밀번호, 자동 완성 데이터, 암호화폐 지갑 정보 등을 타겟팅합니다.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-500 shrink-0"><i class="fa-solid fa-file-export"></i></div>
+                                <div>
+                                    <h5 class="text-white font-bold mb-1">파일 탈취</h5>
+                                    <p class="text-xs text-slate-400">특정 확장자나 경로의 파일을 검색하여 명령 제어 서버로 전송합니다.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-500 shrink-0"><i class="fa-solid fa-keyboard"></i></div>
+                                <div>
+                                    <h5 class="text-white font-bold mb-1">스크린샷 및 키로깅</h5>
+                                    <p class="text-xs text-slate-400">사용자 화면을 캡처하거나 <strong>Keylogging(키로깅, 키보드 입력 기록)</strong>을 통해 민감 정보를 탈취합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 glass-panel group border-indigo-500/20">
+                        <h4 class="text-indigo-400 font-bold mb-8 flex items-center gap-3 uppercase tracking-tighter">
+                            <i class="fa-solid fa-shield-virus"></i> 고도화된 기술적 특징
+                        </h4>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0"><i class="fa-solid fa-tower-broadcast"></i></div>
+                                <div>
+                                    <h5 class="text-white font-bold mb-1">C&C 서버 통신</h5>
+                                    <p class="text-xs text-slate-400">수집된 정보를 암호화하여 공격자의 <strong>Command & Control Server(C&C 서버, 명령 및 제어 서버)</strong>로 전송합니다.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0"><i class="fa-solid fa-ghost"></i></div>
+                                <div>
+                                    <h5 class="text-white font-bold mb-1">회피 기법</h5>
+                                    <p class="text-xs text-slate-400">샌드박스 탐지를 회피하고 안티바이러스 탐지 방지를 위한 <strong>Obfuscation(난독화)</strong> 기술을 사용합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="terminology-note">
+                            <strong>C&C Server (Command & Control Server, 명령 및 제어 서버):</strong> 해커가 감염된 컴퓨터들을 원격에서 조종하거나 탈취한 정보를 수집하는 통제 센터입니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1.2 XYZ CORP CASE FLOW & IMPACT -->
+        <section id="xyz-case">
+            <div class="reveal">
+                <h2 class="text-3xl font-bold mb-12">1.2 실제 사례 분석: <span class="text-sky-500">XYZ 기업 정보 유출 사고</span></h2>
+                
+                <!-- 공격 시나리오 흐름 -->
+                <div class="space-y-0 max-w-4xl mx-auto w-full mb-20">
+                    <div class="flex gap-8 group relative cursor-default">
+                        <div class="flex flex-col items-center">
+                            <div class="step-circle group-hover:bg-sky-500 group-hover:text-white transition-all">1</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="pb-12 pt-1 transition-all duration-300 group-hover:translate-x-4">
+                            <h3 class="text-xl font-bold text-white mb-2">초기 침투 <span class="text-slate-500 text-xs font-normal ml-2 uppercase tracking-tighter">Spear Phishing</span></h3>
+                            <p class="text-slate-400 text-sm">공격자는 <strong>Spear Phishing(스피어 피싱, 표적형 피싱)</strong> 이메일을 통해 XYZ 기업의 직원에게 악성 MS Office 문서를 유포하였습니다.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-8 group relative cursor-default">
+                        <div class="flex flex-col items-center">
+                            <div class="step-circle group-hover:bg-sky-500 group-hover:text-white transition-all">2</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="pb-12 pt-1 transition-all duration-300 group-hover:translate-x-4">
+                            <h3 class="text-xl font-bold text-white mb-2">악성코드 실행 <span class="text-slate-500 text-xs font-normal ml-2 uppercase tracking-tighter">Execution</span></h3>
+                            <p class="text-slate-400 text-sm">직원이 문서를 열면 <strong>Macro(매크로)</strong>를 통해 Infostealer 악성코드가 백그라운드에서 다운로드 및 실행되었습니다.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-8 group relative cursor-default">
+                        <div class="flex flex-col items-center">
+                            <div class="step-circle group-hover:bg-sky-500 group-hover:text-white transition-all">3</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="pb-12 pt-1 transition-all duration-300 group-hover:translate-x-4">
+                            <h3 class="text-xl font-bold text-white mb-2">자격 증명 탈취 <span class="text-slate-500 text-xs font-normal ml-2 uppercase tracking-tighter">Harvesting</span></h3>
+                            <p class="text-slate-400 text-sm">악성코드는 직원의 브라우저에 저장된 <strong>VPN(Virtual Private Network, 가상 사설망)</strong> 자격 증명과 클라우드 서비스 <strong>API Key(인증 키)</strong>를 탈취했습니다.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-8 group relative cursor-default">
+                        <div class="flex flex-col items-center">
+                            <div class="step-circle group-hover:bg-sky-500 group-hover:text-white transition-all">4</div>
+                        </div>
+                        <div class="pb-8 pt-1 transition-all duration-300 group-hover:translate-x-4">
+                            <h3 class="text-xl font-bold text-white mb-2">내부 침투 및 유출 <span class="text-slate-500 text-xs font-normal ml-2 uppercase tracking-tighter">Infiltration</span></h3>
+                            <p class="text-slate-400 text-sm">탈취된 자격 증명을 이용해 내부 네트워크 및 클라우드 환경에 정당한 권한으로 침투하여 기밀 프로젝트 문서를 유출하였습니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 피해 영향 및 대응 교훈 (시나리오 바로 밑 배치) -->
+                <div class="grid md:grid-cols-2 gap-10 reveal">
+                    <div class="p-8 glass-panel border-red-500/20 bg-red-500/5 group/impact">
+                        <h4 class="text-red-400 font-bold mb-8 flex items-center gap-3 uppercase tracking-widest">
+                            <i class="fa-solid fa-skull-crossbones"></i> 피해 영향 (Impact Analysis)
+                        </h4>
+                        <ul class="space-y-4 text-xs text-slate-400 leading-relaxed">
+                            <li class="flex items-start gap-2"><span class="text-red-500 mt-1">•</span> 수천 건의 고객 정보 유출로 인한 대규모 정보 주체 피해 발생</li>
+                            <li class="flex items-start gap-2"><span class="text-red-500 mt-1">•</span> 기업의 경쟁력을 결정하는 핵심 원천 기술 및 프로젝트 문서 탈취</li>
+                            <li class="flex items-start gap-2"><span class="text-red-500 mt-1">•</span> 기업 이미지 및 브랜드 신뢰도 급락으로 인한 영업 타격</li>
+                            <li class="flex items-start gap-2"><span class="text-red-500 mt-1">•</span> 대규모 침해사고 복구 비용 및 법적 배상 비용 발생</li>
+                        </ul>
+                    </div>
+                    <div class="p-8 glass-panel border-green-500/20 bg-green-500/5 group/response">
+                        <h4 class="text-green-400 font-bold mb-8 flex items-center gap-3 uppercase tracking-widest">
+                            <i class="fa-solid fa-shield-halved"></i> 대응 및 교훈 (Remediation)
+                        </h4>
+                        <ul class="space-y-4 text-xs text-slate-400 leading-relaxed">
+                            <li class="flex items-start gap-2"><span class="text-green-500 mt-1">•</span> <strong>MFA(Multi-Factor Authentication, 다단계 인증)</strong> 강화로 자격 증명 탈취 후 추가 접근 차단</li>
+                            <li class="flex items-start gap-2"><span class="text-green-500 mt-1">•</span> 민감 정보에 대한 <strong>RBAC(Role-Based Access Control, 역할 기반 접근 제어)</strong> 및 모니터링 강화</li>
+                            <li class="flex items-start gap-2"><span class="text-green-500 mt-1">•</span> 정기적인 임직원 보안 인식 교육(Security Awareness Training) 실시</li>
+                            <li class="flex items-start gap-2"><span class="text-green-500 mt-1">•</span> <strong>EDR(Endpoint Detection and Response)</strong> 도입을 통한 엔드포인트 이상 행위 가시성 확보</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SUPPLY CHAIN ATTACK -->
+        <section id="supply-chain">
+            <div class="reveal">
+                <h2 class="text-4xl font-bold mb-12">2. 공급망 공격<span class="text-indigo-400">(Supply Chain Attack)</span> 사례 분석</h2>
+                
+                <div class="glass-panel p-8 md:p-12 mb-12">
+                    <p class="text-slate-300 text-lg leading-relaxed mb-4">
+                        <strong>Supply Chain Attack(공급망 공격)</strong>은 신뢰할 수 있는 소프트웨어 또는 하드웨어 공급망에 악성코드를 삽입하여, 이를 사용하는 다수의 사용자에게 유포하는 공격 방식입니다. 
+                    </p>
+                    <p class="text-slate-400 leading-relaxed">
+                        공격자가 직접 타겟을 공격하는 대신, 해당 타겟이 신뢰하고 사용하는 벤더를 먼저 침투하여 공격 통로로 이용하기 때문에 <strong>Transitive Trust(신뢰의 전이)</strong>를 악용한 매우 치명적인 공격으로 분류됩니다.
+                    </p>
+                </div>
+
+                <!-- SUPPLY CHAIN PIPELINE DIAGRAM (BASED ON SLSA STANDARDS) -->
+                <h3 class="text-2xl font-bold mb-8 italic"><i class="fa-solid fa-link-slash mr-3 text-sky-400"></i> 2.1 공급망 오염 매커니즘 (Attack Pipeline)</h3>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+                        graph TD
+                            subgraph "업스트림 단계 (Upstream: Source)"
+                                A[공격자] -- "1. 초기 침투" --> B[개발자 시스템 / SCM 저장소]
+                                A -- "2. 종속성 혼란" --> C[외부 오픈소스 라이브러리]
+                            end
+                            subgraph "빌드/배포 단계 (Build & Packaging)"
+                                B -- "소스 코드 변조" --> D[CI/CD 빌드 파이프라인]
+                                C -- "악성 종속성 주입" --> D
+                                D -- "3. 백도어 포함 바이너리 생성" --> E[공식 업데이트 패키지]
+                            end
+                            subgraph "배포 및 피해 (Distribution & Impact)"
+                                E -- "4. 정식 업데이트 서버 업로드" --> F[벤더사 공식 채널]
+                                F -- "5. 자동 업데이트 수행" --> G[전 세계 기업/정부 고객사]
+                                G -- "원격 제어 및 정보 유출" --> H[공격자 C2 서버]
+                            end
+                            style A fill:#f87171,stroke:#b91c1c,color:#fff
+                            style E fill:#fbbf24,stroke:#d97706,color:#fff
+                            style G fill:#34d399,stroke:#059669,color:#fff
+                            style H fill:#ef4444,stroke:#7f1d1d,color:#fff
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mt-12">
+                    <div class="p-8 glass-panel group">
+                        <h4 class="text-sky-400 font-bold mb-6 flex items-center gap-3 uppercase tracking-tighter">
+                            <i class="fa-solid fa-crosshairs"></i> 공급망 공격의 주요 타겟
+                        </h4>
+                        <ul class="space-y-4 text-slate-400 text-sm">
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 bg-sky-400 rounded-full mt-2"></span>
+                                <span>소프트웨어 개발사 및 빌드 인프라 (CI/CD)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 bg-sky-400 rounded-full mt-2"></span>
+                                <span>공식 업데이트 배포 서버 및 패키지 저장소</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 bg-sky-400 rounded-full mt-2"></span>
+                                <span>오픈소스 프로젝트 및 서드파티 라이브러리</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 bg-sky-400 rounded-full mt-2"></span>
+                                <span>하드웨어 제조업체 및 펌웨어 공급망</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="p-8 glass-panel group">
+                        <h4 class="text-indigo-400 font-bold mb-6 flex items-center gap-3 uppercase tracking-tighter">
+                            <i class="fa-solid fa-wrench"></i> 단계별 공격 방법
+                        </h4>
+                        <ul class="space-y-4 text-slate-400 text-sm">
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-2"></span>
+                                <span><strong>개발 환경 침투:</strong> 개발자의 자격 증명을 탈취하여 소스 코드를 직접 변조합니다.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-2"></span>
+                                <span><strong>빌드 시스템 감염:</strong> 컴파일러나 패키징 도구를 감염시켜 바이너리에 코드를 심습니다.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-2"></span>
+                                <span><strong>업데이트 서버 침투:</strong> 정상 배포 파일을 악성 파일로 교체합니다.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-2"></span>
+                                <span><strong>Typosquatting:</strong> 유사 이름의 악성 라이브러리를 유포하여 오타를 유도합니다.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-16 glass-panel p-10 bg-gradient-to-br from-slate-900 to-slate-800 border-amber-500/20 group/solar">
+                    <h3 class="text-2xl font-bold mb-8 text-amber-400 italic">2.2 실제 사례 분석: SolarWinds Orion 사고</h3>
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h4 class="text-white font-bold mb-4 uppercase tracking-tighter">공격 전개 (Attack Scenario)</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                공격자는 SolarWinds사의 빌드 시스템에 침투하여 <strong>Orion(오리온)</strong> 플랫폼 업데이트 파일에 <strong>SUNBURST</strong>라는 백도어를 삽입했습니다. 
+                            </p>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                전 세계 수천 개의 조직(미국 국방부, 재무부 포함)이 공식 디지털 서명이 포함된 이 업데이트를 신뢰하여 배포하였고, 공격자는 원격 제어를 통해 내부 정보를 탈취했습니다.
+                            </p>
+                        </div>
+                        <div class="flex flex-col justify-center gap-4">
+                            <div class="p-6 rounded-2xl bg-red-500/5 border border-red-500/20">
+                                <h5 class="text-red-400 font-bold mb-3 text-xs uppercase"><i class="fa-solid fa-skull-crossbones mr-2"></i> 사고의 파급력</h5>
+                                <ul class="text-[11px] text-slate-400 space-y-2">
+                                    <li>• 미국 주요 부처를 포함한 전 세계 18,000개 기관 노출</li>
+                                    <li>• 장기간 지속된 은밀한 첩보 수집 활동 (APT)</li>
+                                    <li>• 공급망 보안 체계에 대한 전 지구적 신뢰 붕괴</li>
+                                </ul>
+                            </div>
+                            <div class="p-6 rounded-2xl bg-green-500/5 border border-green-500/20">
+                                <h5 class="text-green-400 font-bold mb-3 text-xs uppercase"><i class="fa-solid fa-shield-halved mr-2"></i> 핵심 교훈</h5>
+                                <ul class="text-[11px] text-slate-400 space-y-2">
+                                    <li>• <strong>SBOM(Software Bill of Materials)</strong> 도입의 시급성 확인</li>
+                                    <li>• 빌드 파이프라인 무결성 검증 체계 확립</li>
+                                    <li>• 제로 트러스트 기반의 지속적 인증 모델 필요</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUMMARY SECTION -->
+        <section id="summary" class="mb-20">
+            <div class="reveal glass-panel p-12 bg-gradient-to-br from-slate-900 to-slate-800 border-sky-500/30 group">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4 italic transition-all group-hover:tracking-widest uppercase">Summary</h2>
+                    <div class="w-20 h-1 bg-sky-500 mx-auto transition-all duration-500 group-hover:w-40"></div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div>
+                        <h4 class="font-bold text-white mb-6 text-xl">핵심 시사점</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-4 text-slate-400 group/item">
+                                <i class="fa-solid fa-circle-check text-sky-500 mt-1 transition-transform group-hover/item:scale-125"></i>
+                                <span><strong>정보 탈취형 악성코드</strong>는 기업 인프라 장악을 위한 <strong>Credential</strong> 획득의 핵심 도구입니다.</span>
+                            </li>
+                            <li class="flex items-start gap-4 text-slate-400 group/item">
+                                <i class="fa-solid fa-circle-check text-sky-500 mt-1 transition-transform group-hover/item:scale-125"></i>
+                                <span><strong>공급망 공격</strong>은 신뢰의 전이를 무기로 사용하므로, 벤더사의 보안 수준이 곧 자사의 보안 수준임을 인식해야 합니다.</span>
+                            </li>
+                            <li class="flex items-start gap-4 text-slate-400 group/item">
+                                <i class="fa-solid fa-circle-check text-sky-500 mt-1 transition-transform group-hover/item:scale-125"></i>
+                                <span>다단계 인증(MFA), EDR, 공급망 무결성 검증 등이 복합적으로 작용하는 <strong>심층 방어(Defense in Depth)</strong>가 필수입니다.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col justify-center items-center text-center p-6 border-l border-slate-700">
+                        <p class="text-slate-500 text-sm mb-4 uppercase tracking-[0.3em]">References</p>
+                        <ul class="text-[10px] text-slate-500 space-y-1 text-left w-full mb-6 italic">
+                            <li>- "The Rise of Infostealers" by Kaspersky/Symantec</li>
+                            <li>- CISA, "Malware Analysis Report (MAR) on SUNBURST"</li>
+                            <li>- supplychainattack.com (공급망 공격 관련 DB)</li>
+                        </ul>
+                        <div class="w-full mt-4 p-4 rounded-xl bg-sky-500/10 border border-sky-500/20 hover:bg-sky-500/20 transition-all cursor-default">
+                            <span class="text-sky-400 font-bold block mb-1">Next Step</span>
+                            <p class="text-slate-400 text-sm italic">Malware Case Study II: Ransomware Trends (랜섬웨어 공격 기법 및 최신 트렌드)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="pb-20 pt-10 border-t border-slate-800">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="flex flex-col gap-1">
+                    <h5 class="text-slate-500 font-bold uppercase text-[10px] tracking-[0.3em] mb-1">Chief System Architect & Security</h5>
+                    <p class="text-white font-semibold text-lg tracking-tight">Putto <span class="text-sky-500 font-light">(Won Sung Doo)</span></p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-slate-600 text-xs mb-1 uppercase tracking-widest">© 2026 Advanced Malware Incident Response Lab. All rights reserved.</p>
+                    <div class="flex items-center justify-center md:justify-end gap-3 mt-2">
+                        <span class="px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700 text-slate-400 text-[10px] font-bold tracking-tighter">보안 전문가용 교재 v2.5</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // Mermaid Initialization with Professional Dark Theme
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'dark',
+            securityLevel: 'loose',
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+        });
+
+        // Progress Bar Logic
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+            reveal();
+        };
+
+        // Scroll Reveal Trigger
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.onload = function() {
+            reveal();
+            setTimeout(() => {
+                const heroReveal = document.querySelector('#hero .reveal');
+                if(heroReveal) heroReveal.classList.add('active');
+            }, 100);
+        }
+    </script>
+
+</body>
+</html>

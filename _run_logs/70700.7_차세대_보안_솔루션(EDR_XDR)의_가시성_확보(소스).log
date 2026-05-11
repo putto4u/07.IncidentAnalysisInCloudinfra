@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70700.7_차세대_보안_솔루션(EDR_XDR)의_가시성_확보",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:19.807119+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

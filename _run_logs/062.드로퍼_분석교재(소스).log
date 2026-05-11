@@ -1,0 +1,6 @@
+﻿{
+  "action": "drop_file",
+  "path": "lab_dropper\\payload_sample.txt",
+  "size": 19,
+  "note": "execution not performed"
+}

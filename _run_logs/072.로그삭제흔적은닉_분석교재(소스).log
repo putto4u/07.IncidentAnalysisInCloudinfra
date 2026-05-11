@@ -1,0 +1,1 @@
+﻿{'detections': ['wevtutil cl System', 'Clear-EventLog Security', 'rm /var/log/auth.log'], 'count': 3}

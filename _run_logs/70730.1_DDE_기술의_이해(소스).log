@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70730.1_DDE_기술의_이해",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:22.559529+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Inspect embedded script objects",
+    "Check external object references",
+    "Review viewer trigger patterns"
+  ]
+}

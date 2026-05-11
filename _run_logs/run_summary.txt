@@ -1,0 +1,105 @@
+﻿created_sources=87
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\061. 악성코드분석-다운로더\061.다운로더_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\061. 악성코드분석-다운로더\70610.0 목차-악성코드분석-다운로더(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\061. 악성코드분석-다운로더\70610.1_다운로더_악성코드의_정의와_공격_아키텍처(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\061. 악성코드분석-다운로더\70610.2_분석_환경_구성_및_기초_동적_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\061. 악성코드분석-다운로더\70610.3_네트워크_통신_프로토콜_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\061. 악성코드분석-다운로더\70610.4_정적_분석_및_코드_구조_파악(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\061. 악성코드분석-다운로더\70610.5_우회_및_은닉_기법_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\061. 악성코드분석-다운로더\70610.6_다운로더_실습(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\062. 악성코드분석-드롭퍼\062.드로퍼_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\062. 악성코드분석-드롭퍼\70620.0.목차-드롭퍼분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\062. 악성코드분석-드롭퍼\70620.1_드롭퍼_특징_및_다운로더_비교(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\062. 악성코드분석-드롭퍼\70620.2_정적_분석_리소스_식별_및_추출(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\062. 악성코드분석-드롭퍼\70620.3_언팩킹_및_복호화_메커니즘(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\062. 악성코드분석-드롭퍼\70620.4_프로세스_인젝션_및_인라인_코드_실행(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\062. 악성코드분석-드롭퍼\70620.5_동적_분석_및_행위_추적(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\062. 악성코드분석-드롭퍼\70620.6_안티_리버싱_대응_전략(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\062. 악성코드분석-드롭퍼\70620.7_탐지_규칙_설계_및_실무_실습(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\063. 악성코드분석-백도어\000.목차-백도어분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\063. 악성코드분석-백도어\063.C2통신_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\063. 악성코드분석-백도어\70630.1_백도어_및_RAT_진화(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\063. 악성코드분석-백도어\70630.2_지속성_유지_기법_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\063. 악성코드분석-백도어\70630.3_C2_통신_프로토콜_심층_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\063. 악성코드분석-백도어\70630.4_원격_명령_실행_및_정보_탈취_기능(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\063. 악성코드분석-백도어\70630.5_권한_상승_기법_역공학(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\063. 악성코드분석-백도어\70630.6_탐지_우회_및_루트킷_기능_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\063. 악성코드분석-백도어\70630.7_포렌식_관점의_백도어_추적(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\064. 악성코드분석-DDoS\000.목차-DDos분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\064. 악성코드분석-DDoS\064.지속성_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\064. 악성코드분석-DDoS\70640.1_DDoS_공격의_진화와_봇넷_구조(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\064. 악성코드분석-DDoS\70640.2_네트워크_레이어_공격_기술_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\064. 악성코드분석-DDoS\70640.3_애플리케이션_레이어_공격_기술_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\064. 악성코드분석-DDoS\70640.4_DDoS_악성코드_동적_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\064. 악성코드분석-DDoS\70640.5_자동_실행_및_자가_복제_기능_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\064. 악성코드분석-DDoS\70640.6_탐지_우회_및_안티-분석_기법(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\064. 악성코드분석-DDoS\70640.7_관제_및_대응_전략(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\065. 악성코드분석-랜섬웨어\000.목차-랜섬웨어분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\065. 악성코드분석-랜섬웨어\065.권한상승_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\065. 악성코드분석-랜섬웨어\70650.1_랜섬웨어_동향_및_RaaS_구조(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\065. 악성코드분석-랜섬웨어\70650.2_암호화_메커니즘_심층_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\065. 악성코드분석-랜섬웨어\70650.3_키_관리_및_C2_서버_통신_방식(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\065. 악성코드분석-랜섬웨어\70650.4_지속성_유지_및_시스템_파괴_행위(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\065. 악성코드분석-랜섬웨어\70650.5_탐지_우회_및_안티-샌드박스_기술(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\065. 악성코드분석-랜섬웨어\70650.6_랜섬웨어_포렌식_및_복구_가능성_검토(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\065. 악성코드분석-랜섬웨어\70650.7_전사적_대응_및_예방_아키텍처(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\066. 랜섬웨어행위\066.랜섬웨어행위_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\067. 키로깅행위\067.키로깅행위_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\068. 정보탈취행위\068.정보탈취행위_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\069. 프로세스인젝션개념\069.프로세스인젝션개념_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\070. 파일리스 악성코드 이해\000.목차-악성코드이해(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\070. 파일리스 악성코드 이해\070.난독화복호화개념_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\070. 파일리스 악성코드 이해\70700.1_파일리스_공격의_정의와_필요성(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\070. 파일리스 악성코드 이해\70700.2_파일리스_공격의_주요_유형_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\070. 파일리스 악성코드 이해\70700.3_공격_매커니즘_초기_침투에서_실행까지(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\070. 파일리스 악성코드 이해\70700.4_정상_시스템_도구(LOLBins)_활용_사례(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\070. 파일리스 악성코드 이해\70700.5_파일리스_공격의_지속성_확보_전략(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\070. 파일리스 악성코드 이해\70700.6_탐지_및_분석의_어려움과_대응_방안(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\070. 파일리스 악성코드 이해\70700.7_차세대_보안_솔루션(EDR_XDR)의_가시성_확보(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\071. 파일리스 악성코드분석-파워쉘\000.목차-파워쉘악성코드분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\071. 파일리스 악성코드분석-파워쉘\071.스크립트로더_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\071. 파일리스 악성코드분석-파워쉘\70710.1_파워쉘_공격_프레임워크_개요(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\071. 파일리스 악성코드분석-파워쉘\70710.2_파워쉘_스크립트_난독화_기술_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\071. 파일리스 악성코드분석-파워쉘\70710.3_난독화_해제(De-obfuscation)_실습(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\071. 파일리스 악성코드분석-파워쉘\70710.4_메모리_인젝션_및_쉘코드_실행_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\071. 파일리스 악성코드분석-파워쉘\70710.5_WMI와_파워쉘의_결합_공격(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\071. 파일리스 악성코드분석-파워쉘\70710.6_파워쉘_로깅_및_모니터링_강화(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\071. 파일리스 악성코드분석-파워쉘\70710.7_AMSI_우회_기술과_탐지_전략(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\072. 파일리스 악성코드분석-VBA\000.목차-VBA악성코드분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\072. 파일리스 악성코드분석-VBA\072.로그삭제흔적은닉_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\072. 파일리스 악성코드분석-VBA\70720.1_오피스_매크로_공격의_재부상(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\072. 파일리스 악성코드분석-VBA\70720.2_VBA_매크로_구조_및_정적_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\072. 파일리스 악성코드분석-VBA\70720.3_VBA_난독화_및_은닉_기술(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\072. 파일리스 악성코드분석-VBA\70720.4_매크로_기반_2차_페이로드_실행_기법(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\072. 파일리스 악성코드분석-VBA\70720.5_VBA_및_Windows_API_활용_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\072. 파일리스 악성코드분석-VBA\70720.6_악성_매크로_분석_도구_활용(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\072. 파일리스 악성코드분석-VBA\70720.7_방어_전략_및_사용자_보안_정책(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\073. 파일리스 악성코드분석-DDE\000.목차-DDE악성코드분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\073. 파일리스 악성코드분석-DDE\073.네트워크스캔_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\073. 파일리스 악성코드분석-DDE\70730.1_DDE_기술의_이해(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\073. 파일리스 악성코드분석-DDE\70730.2_DDE_기반_공격_시나리오_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\073. 파일리스 악성코드분석-DDE\70730.3_악성_DDE_필드_구조_및_명령어_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\073. 파일리스 악성코드분석-DDE\70730.4_DDE_공격의_은닉_및_우회_기법(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\073. 파일리스 악성코드분석-DDE\70730.5_동적_분석을_통한_페이로드_추적(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\073. 파일리스 악성코드분석-DDE\70730.6_DDE_공격_탐지_및_포렌식(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\073. 파일리스 악성코드분석-DDE\70730.7_방어_및_대응_가이드(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\074.파일리스 악성코드분석-HWP\000.목차-HWP악성코드분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\074.파일리스 악성코드분석-HWP\074.취약점악용흐름_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\074.파일리스 악성코드분석-HWP\70740.1_HWP_문서_구조와_공격_표면(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\074.파일리스 악성코드분석-HWP\70740.2_취약점_기반_HWP_공격_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\074.파일리스 악성코드분석-HWP\70740.3_포스트스크립트_EPS_악용_기법_심층_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\074.파일리스 악성코드분석-HWP\70740.4_객체_연결_및_삽입_OLE_공격_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\074.파일리스 악성코드분석-HWP\70740.5_HWP_악성코드_분석_도구_활용_실습(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\074.파일리스 악성코드분석-HWP\70740.6_지속성_유지_및_내부_전파_시나리오(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\074.파일리스 악성코드분석-HWP\70740.7_HWP_보안_강화_및_대응_전략(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\075. 파일리스 악성코드분석-PDF\000.목차-PDF악성코드(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\075. 파일리스 악성코드분석-PDF\075.종합탐지규칙_분석교재(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\075. 파일리스 악성코드분석-PDF\70750.1_PDF_파일_아키텍처와_객체_모델(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\075. 파일리스 악성코드분석-PDF\70750.2_자바스크립트_기반_PDF_공격_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\075. 파일리스 악성코드분석-PDF\70750.3_PDF_익스플로잇_분석_및_쉘코드_추출(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\075. 파일리스 악성코드분석-PDF\70750.4_악성_요소_은닉_기법_분석(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\075. 파일리스 악성코드분석-PDF\70750.5_멀티미디어_및_외부_연결_공격(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\075. 파일리스 악성코드분석-PDF\70750.6_PDF_분석_전용_도구_활용_실습(소스).py
+OK	C:\Users\putto\gemini\07.IncidentAnalysisInCloudinfra\075. 파일리스 악성코드분석-PDF\70750.7_방어_전략_및_뷰어_보안_설정(소스).py
+run_ok=102
+run_fail=0

@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70720.1_오피스_매크로_공격의_재부상",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:20.806909+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70710.3_난독화_해제(De-obfuscation)_실습",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:20.207112+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Find encoded string patterns",
+    "Separate decode routines",
+    "Peel obfuscation layers"
+  ]
+}

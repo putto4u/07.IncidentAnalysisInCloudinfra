@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70710.5_WMI와_파워쉘의_결합_공격",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:20.390195+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Detect EncodedCommand usage",
+    "Review ScriptBlock logs",
+    "Flag AMSI bypass patterns"
+  ]
+}

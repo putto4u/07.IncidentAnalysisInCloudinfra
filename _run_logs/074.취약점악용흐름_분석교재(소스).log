@@ -1,0 +1,25 @@
+﻿{
+  "topic": "exploit-lifecycle",
+  "chain": [
+    {
+      "phase": "recon",
+      "description": "surface identification"
+    },
+    {
+      "phase": "weaponization",
+      "description": "payload preparation (simulated)"
+    },
+    {
+      "phase": "delivery",
+      "description": "transport vector selection"
+    },
+    {
+      "phase": "exploitation",
+      "description": "vulnerability trigger (concept only)"
+    },
+    {
+      "phase": "installation",
+      "description": "persistence attempt (concept only)"
+    }
+  ]
+}

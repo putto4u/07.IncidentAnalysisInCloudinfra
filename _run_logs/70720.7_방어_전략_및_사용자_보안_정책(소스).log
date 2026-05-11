@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70720.7_방어_전략_및_사용자_보안_정책",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:21.373422+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

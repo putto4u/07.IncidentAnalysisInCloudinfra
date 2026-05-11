@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70700.6_탐지_및_분석의_어려움과_대응_방안",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:19.723645+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

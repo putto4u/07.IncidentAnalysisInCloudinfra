@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70640.2_네트워크_레이어_공격_기술_분석",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:16.907243+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

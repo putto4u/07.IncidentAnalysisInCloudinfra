@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70640.7_관제_및_대응_전략",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:17.373408+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

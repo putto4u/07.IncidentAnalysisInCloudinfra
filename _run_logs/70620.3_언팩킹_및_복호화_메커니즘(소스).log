@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70620.3_언팩킹_및_복호화_메커니즘",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:13.523828+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

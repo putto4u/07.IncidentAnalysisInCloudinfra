@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "000.목차-파워쉘악성코드분석",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:19.890343+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

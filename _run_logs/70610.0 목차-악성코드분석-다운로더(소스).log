@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70610.0 목차-악성코드분석-다운로더",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:12.506959+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

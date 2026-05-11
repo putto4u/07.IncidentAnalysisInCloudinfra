@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70720.3_VBA_난독화_및_은닉_기술",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:20.990247+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Inspect AutoOpen routines",
+    "Check Shell and WinAPI calls",
+    "Correlate document-process chain"
+  ]
+}

@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70750.7_방어_전략_및_뷰어_보안_설정",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:24.661949+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

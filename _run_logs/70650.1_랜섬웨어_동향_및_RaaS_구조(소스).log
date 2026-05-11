@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70650.1_랜섬웨어_동향_및_RaaS_구조",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:17.590434+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70750.5_멀티미디어_및_외부_연결_공격",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:24.490250+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

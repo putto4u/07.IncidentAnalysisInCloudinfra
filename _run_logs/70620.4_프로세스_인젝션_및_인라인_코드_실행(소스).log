@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70620.4_프로세스_인젝션_및_인라인_코드_실행",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:13.606941+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

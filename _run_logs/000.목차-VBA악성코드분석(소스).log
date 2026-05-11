@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "000.목차-VBA악성코드분석",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:20.673733+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Inspect AutoOpen routines",
+    "Check Shell and WinAPI calls",
+    "Correlate document-process chain"
+  ]
+}

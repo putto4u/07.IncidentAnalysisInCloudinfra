@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70700.5_파일리스_공격의_지속성_확보_전략",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:19.625829+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

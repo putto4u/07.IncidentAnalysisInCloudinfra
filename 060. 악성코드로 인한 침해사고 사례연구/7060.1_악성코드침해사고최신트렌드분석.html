@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>악성코드 침해사고의 최신 트렌드 분석</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --brand-primary: #0ea5e9;
+            --brand-secondary: #6366f1;
+            --bg-dark: #020617;
+            --card-bg: rgba(15, 23, 42, 0.6);
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f1f5f9;
+            scroll-behavior: smooth;
+            line-height: 1.7;
+        }
+
+        .glass-panel {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-8px);
+            border-color: rgba(14, 165, 233, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        section {
+            padding: 80px 0;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.05);
+            z-index: 1000;
+        }
+        #progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #0ea5e9, #6366f1);
+            width: 0%;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: 50%;
+            background: #1e293b;
+            border: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--brand-primary);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        .step-line {
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            bottom: -20px;
+            width: 1px;
+            background: #334155;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass-panel rounded-none border-t-0 border-x-0">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-shield-halved text-white text-sm"></i>
+            </div>
+            <span class="font-bold text-sm tracking-tight hidden md:block">Hacking & Security</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-xs font-semibold tracking-widest text-slate-400">
+            <a href="#overview" class="hover:text-sky-400 transition-colors uppercase">Overview</a>
+            <a href="#apt-lifecycle" class="hover:text-sky-400 transition-colors uppercase">APT Lifecycle</a>
+            <a href="#caas-trends" class="hover:text-sky-400 transition-colors uppercase">CaaS & Trends</a>
+            <a href="#summary" class="hover:text-sky-400 transition-colors uppercase">Summary</a>
+        </div>
+        <button class="bg-sky-500 hover:bg-sky-400 text-white px-4 py-1.5 rounded-full text-xs font-bold transition-all transform hover:scale-105">
+            DOWNLOAD PDF
+        </button>
+    </nav>
+
+    <main class="container mx-auto px-6 max-w-5xl">
+        
+        <section id="hero" class="text-center">
+            <div class="reveal">
+                <p class="text-sky-400 font-bold tracking-[0.5em] mb-6 text-xs uppercase">Strategic Malware Analysis</p>
+                <h1 class="mb-10 leading-tight tracking-tighter">
+                    <span class="block text-slate-400 font-medium text-3xl md:text-5xl mb-4">악성코드 침해사고</span>
+                    <span class="text-gradient text-5xl md:text-6xl font-black block">최신 트렌드 분석</span>
+                </h1>
+                <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+                    진화하는 사이버 위협 환경에서 악성코드가 수행하는 전략적 역할과 
+                    산업화된 범죄 생태계의 메커니즘을 심층 분석합니다.
+                </p>
+                <div class="mt-12 flex justify-center gap-4">
+                    <a href="#overview" class="p-4 rounded-full bg-slate-800 text-white hover:bg-slate-700 transition-all hover:scale-110">
+                        <i class="fa-solid fa-chevron-down animate-bounce"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="overview">
+            <div class="glass-panel p-8 md:p-16 reveal group">
+                <div class="flex items-center gap-4 mb-8">
+                    <span class="w-12 h-1px bg-sky-500 transition-all duration-500 group-hover:w-24"></span>
+                    <h2 class="text-2xl font-bold uppercase tracking-widest group-hover:text-sky-400 transition-colors">Chapter Overview</h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="text-slate-300 text-lg mb-6 leading-relaxed">
+                            사이버 위협 환경은 끊임없이 진화하고 있으며, 악성코드 기반의 침해사고는 여전히 기업과 개인에게 심각한 위협을 가하고 있습니다. 
+                        </p>
+                        <p class="text-slate-400 mb-8">
+                            본 챕터에서는 지능형 지속 위협(APT) 공격의 생명주기 내 악성코드의 역할, 서비스형 범죄(CaaS)의 확산, 그리고 고도화된 타겟형 공격 동향을 체계적으로 학습합니다.
+                        </p>
+                    </div>
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-2xl blur opacity-25 group-hover:opacity-60 transition duration-700"></div>
+                        <img src="https://static.vecteezy.com/system/resources/previews/042/579/385/non_2x/cyber-security-concept-data-security-protected-access-control-privacy-data-protection-modern-flat-style-for-landing-page-web-banner-infographic-flat-illustration-on-white-background-vector.jpg" 
+                             alt="Cyber Security Overview" class="relative rounded-2xl transition-all duration-700 group-hover:scale-[1.02] group-hover:rotate-1">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="apt-lifecycle">
+            <div class="reveal">
+                <h2 class="text-4xl font-bold mb-12">1. APT 공격의 생명주기와 <span class="text-sky-500">악성코드의 역할</span></h2>
+                <p class="text-slate-400 mb-16 text-lg">
+                    지능형 지속 위협(APT)은 특정 목표를 설정하고 장기간에 걸쳐 은밀하게 공격을 시도합니다. 악성코드는 이 과정에서 공격자의 '손과 발'이 되어 각 단계의 핵심 목표를 완수합니다.
+                </p>
+
+                <div class="space-y-0 max-w-3xl mx-auto">
+                    <!-- Step 1 -->
+                    <div class="flex gap-8 group relative cursor-default">
+                        <div class="flex flex-col items-center">
+                            <div class="step-circle group-hover:bg-sky-500 group-hover:text-white group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(14,165,233,0.5)] transition-all">1</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="pb-16 pt-1 transition-all duration-300 group-hover:translate-x-4">
+                            <h3 class="text-xl font-bold text-white mb-3 transition-colors group-hover:text-sky-400">정찰 및 정보 수집 <span class="text-slate-500 text-sm font-normal ml-2 uppercase">Reconnaissance</span></h3>
+                            <p class="text-slate-400 transition-colors group-hover:text-slate-200">공격 대상의 취약점, 네트워크 구조, 직원 정보를 수집합니다. 수집된 데이터는 **맞춤형 악성코드 제작**의 필수 재료가 됩니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex gap-8 group relative cursor-default">
+                        <div class="flex flex-col items-center">
+                            <div class="step-circle group-hover:bg-sky-500 group-hover:text-white group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(14,165,233,0.5)] transition-all">2</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="pb-16 pt-1 transition-all duration-300 group-hover:translate-x-4">
+                            <h3 class="text-xl font-bold text-white mb-3 transition-colors group-hover:text-sky-400">초기 침투 <span class="text-slate-500 text-sm font-normal ml-2 uppercase">Initial Compromise</span></h3>
+                            <p class="text-slate-400 transition-colors group-hover:text-slate-200">스피어 피싱, 워터링 홀 등을 통해 최초의 악성 페이로드를 전달합니다. 이때 **드롭퍼(Dropper)**나 **다운로더(Downloader)**가 실행됩니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex gap-8 group relative cursor-default">
+                        <div class="flex flex-col items-center">
+                            <div class="step-circle group-hover:bg-sky-500 group-hover:text-white group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(14,165,233,0.5)] transition-all">3</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="pb-16 pt-1 transition-all duration-300 group-hover:translate-x-4">
+                            <h3 class="text-xl font-bold text-white mb-3 transition-colors group-hover:text-sky-400">거점 확보 <span class="text-slate-500 text-sm font-normal ml-2 uppercase">Establish Foothold</span></h3>
+                            <p class="text-slate-400 transition-colors group-hover:text-slate-200">지속적인 접근 채널을 위해 백도어 및 지속성 유지 악성코드를 심습니다. 재부팅 후에도 실행되는 매커니즘을 확보합니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex gap-8 group relative cursor-default">
+                        <div class="flex flex-col items-center">
+                            <div class="step-circle group-hover:bg-sky-500 group-hover:text-white group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(14,165,233,0.5)] transition-all">4</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="pb-16 pt-1 transition-all duration-300 group-hover:translate-x-4">
+                            <h3 class="text-xl font-bold text-white mb-3 transition-colors group-hover:text-sky-400">권한 상승 <span class="text-slate-500 text-sm font-normal ml-2 uppercase">Privilege Escalation</span></h3>
+                            <p class="text-slate-400 transition-colors group-hover:text-slate-200">익스플로잇 코드를 통해 최고 관리자 권한을 확보하여 통제권을 장악하고 보안 설정을 무력화합니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="flex gap-8 group relative cursor-default">
+                        <div class="flex flex-col items-center">
+                            <div class="step-circle group-hover:bg-sky-500 group-hover:text-white group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(14,165,233,0.5)] transition-all">5</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="pb-16 pt-1 transition-all duration-300 group-hover:translate-x-4">
+                            <h3 class="text-xl font-bold text-white mb-3 transition-colors group-hover:text-sky-400">내부 정찰 및 이동 <span class="text-slate-500 text-sm font-normal ml-2 uppercase">Lateral Movement</span></h3>
+                            <p class="text-slate-400 transition-colors group-hover:text-slate-200">네트워크를 스캔하며 기밀 정보가 있는 핵심 서버로 경로를 확장(Lateral Movement)하며 세력을 넓힙니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="flex gap-8 group relative cursor-default">
+                        <div class="flex flex-col items-center">
+                            <div class="step-circle group-hover:bg-sky-500 group-hover:text-white group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(14,165,233,0.5)] transition-all">6</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="pb-16 pt-1 transition-all duration-300 group-hover:translate-x-4">
+                            <h3 class="text-xl font-bold text-white mb-3 transition-colors group-hover:text-sky-400">목표 달성 <span class="text-slate-500 text-sm font-normal ml-2 uppercase">Achieve Objective</span></h3>
+                            <p class="text-slate-400 transition-colors group-hover:text-slate-200">정보 탈취, 시스템 파괴, 데이터 암호화(랜섬웨어) 등 공격자가 설계한 최종 목적을 완수합니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 7 -->
+                    <div class="flex gap-8 group relative cursor-default">
+                        <div class="flex flex-col items-center">
+                            <div class="step-circle group-hover:bg-sky-500 group-hover:text-white group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(14,165,233,0.5)] transition-all">7</div>
+                        </div>
+                        <div class="pb-8 pt-1 transition-all duration-300 group-hover:translate-x-4">
+                            <h3 class="text-xl font-bold text-white mb-3 transition-colors group-hover:text-sky-400">흔적 제거 <span class="text-slate-500 text-sm font-normal ml-2 uppercase">Cover Tracks</span></h3>
+                            <p class="text-slate-400 transition-colors group-hover:text-slate-200">공격 흔적을 삭제하고 로그를 변조하여 탐지를 회피하고 추후 분석을 방해합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="caas-trends">
+            <div class="reveal">
+                <h2 class="text-4xl font-bold mb-12">2. 서비스형 범죄(CaaS) 및 <span class="text-indigo-400">타겟형 공격 동향</span></h2>
+                
+                <div class="grid md:grid-cols-2 gap-12 mb-20">
+                    <div class="space-y-6">
+                        <div class="p-8 rounded-2xl bg-indigo-500/5 border border-indigo-500/20 glass-panel">
+                            <h3 class="text-2xl font-bold text-indigo-300 mb-6 flex items-center gap-3">
+                                <i class="fa-solid fa-briefcase"></i> 서비스형 범죄 (CaaS)
+                            </h3>
+                            <p class="text-slate-400 mb-8">
+                                사이버 범죄는 전문화된 비즈니스 모델로 변모했습니다. 이제 누구나 비용을 지불하면 고성능 공격 툴을 구독할 수 있습니다.
+                            </p>
+                            <ul class="space-y-4">
+                                <li class="flex items-center gap-3 group">
+                                    <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full group-hover:scale-150 transition-transform"></span>
+                                    <strong class="text-slate-200">RaaS (Ransomware as a Service):</strong> 랜섬웨어 인프라 대여 및 수익 배분
+                                </li>
+                                <li class="flex items-center gap-3 group">
+                                    <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full group-hover:scale-150 transition-transform"></span>
+                                    <strong class="text-slate-200">MaaS (Malware as a Service):</strong> 특정 기능의 악성코드 구독형 판매
+                                </li>
+                                <li class="flex items-center gap-3 group">
+                                    <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full group-hover:scale-150 transition-transform"></span>
+                                    <strong class="text-slate-200">BaaS (Botnet as a Service):</strong> 공격용 봇넷 및 인프라 대여
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center glass-panel p-8">
+                        <div class="text-6xl font-bold text-indigo-500 mb-4 tracking-tighter animate-pulse">90% ↓</div>
+                        <h4 class="text-2xl font-bold mb-4">공격 진입장벽의 붕괴</h4>
+                        <p class="text-slate-400 text-lg">
+                            CaaS의 확산으로 초보 공격자들도 국가 수준의 정교한 공격 인프라를 활용할 수 있게 되었으며, 이는 전체 사이버 위협의 양적 팽창을 주도하고 있습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-20">
+                    <h3 class="text-2xl font-bold mb-10 text-center uppercase tracking-widest">Advanced Targeted Attack Vectors<br><span class="text-sky-400 text-sm font-normal">(고도화된 타겟형 공격 동향)</span></h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Card 1 -->
+                        <div class="flex gap-6 p-8 glass-panel border-slate-800 hover:border-sky-500/50">
+                            <div class="text-4xl text-sky-400 group-hover:scale-110 transition-transform"><i class="fa-solid fa-envelope-circle-check"></i></div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2">스피어 피싱 (Spear Phishing)</h4>
+                                <p class="text-xs text-slate-500 uppercase mb-3">Psychological Intrusion</p>
+                                <p class="text-sm text-slate-400 leading-relaxed">특정 대상을 타겟팅한 맞춤형 정보를 활용해 신뢰를 얻은 후 정밀하게 침투합니다.</p>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="flex gap-6 p-8 glass-panel border-slate-800 hover:border-indigo-500/50">
+                            <div class="text-4xl text-indigo-400 group-hover:scale-110 transition-transform"><i class="fa-solid fa-water"></i></div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2">워터링 홀 (Watering Hole)</h4>
+                                <p class="text-xs text-slate-500 uppercase mb-3">Strategic Ambush</p>
+                                <p class="text-sm text-slate-400 leading-relaxed">타겟이 자주 방문하는 사이트를 선제 오염시켜 방문 시 자동으로 감염시키는 매복형 전략입니다.</p>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="flex gap-6 p-8 glass-panel border-slate-800 hover:border-emerald-500/50">
+                            <div class="text-4xl text-emerald-400 group-hover:scale-110 transition-transform"><i class="fa-solid fa-link"></i></div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2">공급망 공격 (Supply Chain Attack)</h4>
+                                <p class="text-xs text-slate-500 uppercase mb-3">Mass Infection</p>
+                                <p class="text-sm text-slate-400 leading-relaxed">신뢰받는 SW의 업데이트 경로를 장악하여 대규모로 확산시키는 가장 파괴적인 전략입니다.</p>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="flex gap-6 p-8 glass-panel border-slate-800 hover:border-rose-500/50">
+                            <div class="text-4xl text-rose-400 group-hover:scale-110 transition-transform"><i class="fa-solid fa-bug"></i></div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2">제로데이 익스플로잇 (Zero-Day)</h4>
+                                <p class="text-xs text-slate-500 uppercase mb-3">Unstoppable Breach</p>
+                                <p class="text-sm text-slate-400 leading-relaxed">알려지지 않은 취약점을 타격하여 보안 패치 전 대응 시간 없이 즉시 침투합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="summary" class="mb-20">
+            <div class="reveal glass-panel p-12 bg-gradient-to-br from-slate-900 to-slate-800 border-sky-500/30 group">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4 italic transition-all group-hover:tracking-widest">Core Summary</h2>
+                    <div class="w-20 h-1 bg-sky-500 mx-auto transition-all duration-500 group-hover:w-40"></div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div>
+                        <h4 class="font-bold text-white mb-6 text-xl">학습 핵심 요약</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-4 text-slate-400 group/item">
+                                <i class="fa-solid fa-circle-check text-sky-500 mt-1 transition-transform group-hover/item:scale-125"></i>
+                                <span>악성코드는 APT 생명주기 전반에서 **은밀함과 지속성**을 유지하는 핵심 도구입니다.</span>
+                            </li>
+                            <li class="flex items-start gap-4 text-slate-400 group/item">
+                                <i class="fa-solid fa-circle-check text-sky-500 mt-1 transition-transform group-hover/item:scale-125"></i>
+                                <span>CaaS의 확산은 공격의 **양적 팽창과 질적 상향 평준화**를 초래했습니다.</span>
+                            </li>
+                            <li class="flex items-start gap-4 text-slate-400 group/item">
+                                <i class="fa-solid fa-circle-check text-sky-500 mt-1 transition-transform group-hover/item:scale-125"></i>
+                                <span>공급망 공격과 같은 **신뢰 기반 공격**은 방어 패러다임 변화를 요구합니다.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col justify-center items-center text-center p-6 border-l border-slate-700">
+                        <p class="text-slate-500 text-sm mb-4 uppercase tracking-[0.3em]">Knowledge Check</p>
+                        <h3 class="text-2xl font-bold mb-6">이제 침해사고 트렌드 분석을 위한<br>기초를 이해했습니다.</h3>
+                        <div class="mt-4 p-4 rounded-xl bg-sky-500/10 border border-sky-500/20 hover:bg-sky-500/20 transition-all cursor-default">
+                            <span class="text-sky-400 font-bold block mb-1">Next Step</span>
+                            <p class="text-slate-400 text-sm">실제 악성코드 패킷 분석 및 역공학 실습</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="pb-20 pt-10 border-t border-slate-800">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="flex flex-col gap-1">
+                    <h5 class="text-slate-500 font-bold uppercase text-[10px] tracking-[0.3em] mb-1">Chief System Architect & Security</h5>
+                    <p class="text-white font-semibold text-lg tracking-tight">Putto <span class="text-sky-500 font-light">(Won Sung Doo)</span></p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-slate-600 text-xs mb-1 uppercase tracking-widest">© Copyright All rights reserved.</p>
+                    <div class="flex items-center justify-center md:justify-end gap-3 mt-2">
+                        <span class="px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700 text-slate-400 text-[10px] font-bold tracking-tighter">제작 버전 v2.5</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+            reveal();
+        };
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.onload = function() {
+            reveal();
+            // Trigger first animation
+            setTimeout(() => {
+                document.querySelector('#hero .reveal').classList.add('active');
+            }, 100);
+        }
+    </script>
+
+</body>
+</html>

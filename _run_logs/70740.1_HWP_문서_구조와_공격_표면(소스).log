@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70740.1_HWP_문서_구조와_공격_표면",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:23.340079+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Inspect embedded script objects",
+    "Check external object references",
+    "Review viewer trigger patterns"
+  ]
+}

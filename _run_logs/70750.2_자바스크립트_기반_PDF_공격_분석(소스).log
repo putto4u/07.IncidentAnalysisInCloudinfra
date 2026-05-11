@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70750.2_자바스크립트_기반_PDF_공격_분석",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:24.209093+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Inspect embedded script objects",
+    "Check external object references",
+    "Review viewer trigger patterns"
+  ]
+}

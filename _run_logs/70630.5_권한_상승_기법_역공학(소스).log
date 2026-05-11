@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70630.5_권한_상승_기법_역공학",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:16.356904+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

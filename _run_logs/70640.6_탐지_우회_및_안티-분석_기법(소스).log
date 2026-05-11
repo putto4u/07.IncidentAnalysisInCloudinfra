@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70640.6_탐지_우회_및_안티-분석_기법",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:17.275534+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

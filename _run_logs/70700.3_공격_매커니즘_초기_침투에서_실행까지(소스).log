@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70700.3_공격_매커니즘_초기_침투에서_실행까지",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:19.456887+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

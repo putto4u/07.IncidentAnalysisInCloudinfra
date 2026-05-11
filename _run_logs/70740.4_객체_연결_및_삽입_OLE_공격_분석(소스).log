@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70740.4_객체_연결_및_삽입_OLE_공격_분석",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:23.606852+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

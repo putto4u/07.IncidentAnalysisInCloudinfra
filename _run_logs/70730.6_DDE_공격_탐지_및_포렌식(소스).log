@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70730.6_DDE_공격_탐지_및_포렌식",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:23.029856+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Inspect embedded script objects",
+    "Check external object references",
+    "Review viewer trigger patterns"
+  ]
+}

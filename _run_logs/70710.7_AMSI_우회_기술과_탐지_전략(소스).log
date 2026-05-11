@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70710.7_AMSI_우회_기술과_탐지_전략",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:20.588633+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Detect EncodedCommand usage",
+    "Review ScriptBlock logs",
+    "Flag AMSI bypass patterns"
+  ]
+}

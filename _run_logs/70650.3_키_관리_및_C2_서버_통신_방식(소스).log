@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70650.3_키_관리_및_C2_서버_통신_방식",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:17.773649+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Identify beacon interval",
+    "Check destination reputation",
+    "Detect anomalous user-agent"
+  ]
+}

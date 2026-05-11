@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70650.7_전사적_대응_및_예방_아키텍처",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:18.139670+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}

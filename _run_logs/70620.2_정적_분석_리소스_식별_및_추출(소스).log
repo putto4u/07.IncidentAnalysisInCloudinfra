@@ -1,0 +1,14 @@
+﻿{
+  "metadata": {
+    "topic": "70620.2_정적_분석_리소스_식별_및_추출",
+    "mode": "defensive-training",
+    "timestamp": "2026-05-07T06:06:13.423843+00:00",
+    "os": "Windows",
+    "safety": "no offensive behavior"
+  },
+  "checklist": [
+    "Review network indicators",
+    "Review file activities",
+    "Review process lineage"
+  ]
+}
